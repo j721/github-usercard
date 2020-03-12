@@ -70,7 +70,7 @@ followersArray.forEach(item =>{
   </div>
 </div>
 
-*/
+
 
 /* List of LS Instructors Github username's: 
   tetondan
@@ -99,7 +99,7 @@ const bio = document.createElement('p');
 
 card.append(picture, cardInfo);
 cardInfo.append(name, username, location, profile, followers, following,bio);
-profile.append(link);
+
 
 //adding classes to elements 
 card.classList.add('card');
@@ -113,12 +113,15 @@ name.textContent= data.name;
 username.textContent= data.login; 
 location.textContent=data.location;
 profile.textContent='Profile:';
-link.textContent=data.html_url;
-followers.textContent = `Followers: ${data.followers}`;
+link.setAttribute(`href`,data.html_url);
+link.textContent= data.html_url; 
+followers.textContent= `Followers: ${data.followers}`;
 following.textContent=`Following: ${data.following}`;  
 bio.textContent= data.bio;
 
-
+profile.append(link);
 
 return card;
+
+
 }
