@@ -3,16 +3,16 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get('https://api.github.com/users/j721')
+const cards =document.querySelector('.cards');
+
+axios.get("https://api.github.com/users/j721")
   .then(response=>{
       cards.append(createCard(response.data))
       console.log(response);
   })
   .catch(error=>{
       console.log('the data was not returned', error)
-  })
-
-  const cards =document.querySelector('.cards');
+  });
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -36,7 +36,21 @@ axios.get('https://api.github.com/users/j721')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['witlessmean', 'mrsimpson3000', 
+'DanialHadavi', 'berachele', 'easpaas'];
+
+followersArray.forEach(item =>{
+  axios.get(`https://api.github.com/users/${item}`)
+  .then(response=>{
+    console.log(response.data);
+    cards.appendChild(createCard(response.data))
+  })
+  .catch(error=>{
+    console.log('data was not returned', error);
+  });
+})
+
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -65,6 +79,7 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
 
 function createCard(data){
 //create elements
@@ -99,8 +114,8 @@ username.textContent= data.login;
 location.textContent=data.location;
 profile.textContent='Profile:';
 link.textContent=data.html_url;
-followers.textContent = data.followers;
-following.textContent=data.following;  
+followers.textContent = `Followers: ${data.followers}`;
+following.textContent=`Following: ${data.following}`;  
 bio.textContent= data.bio;
 
 
