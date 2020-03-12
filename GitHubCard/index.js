@@ -5,11 +5,14 @@
 
 axios.get('https://api.github.com/users/j721')
   .then(response=>{
+      cards.append(createCard(response.data))
       console.log(response);
   })
   .catch(error=>{
       console.log('the data was not returned', error)
   })
+
+  const cards =document.querySelector('.cards');
 
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -90,10 +93,16 @@ name.classList.add('name');
 username.classList.add('username');
 
 //setting text content
-
+picture.src = data.avatar_url; 
 name.textContent= data.name;
-username.textContent= data.
+username.textContent= data.login; 
+location.textContent=data.location;
+profile.textContent='Profile:';
+link.textContent=data.html_url;
+followers.textContent = data.followers;
+following.textContent=data.following;  
 bio.textContent= data.bio;
+
 
 
 return card;
