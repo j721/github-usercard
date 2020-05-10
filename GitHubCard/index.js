@@ -95,10 +95,7 @@ const followers = document.createElement('p');
 const following = document.createElement('p');
 const bio = document.createElement('p');
 
-//append elements
 
-card.append(picture, cardInfo);
-cardInfo.append(name, username, location, profile, followers, following,bio);
 
 
 //adding classes to elements 
@@ -119,7 +116,11 @@ followers.textContent= `Followers: ${data.followers}`;
 following.textContent=`Following: ${data.following}`;  
 bio.textContent= data.bio;
 
+//append elements
+
 profile.append(link);
+card.append(picture, cardInfo);
+cardInfo.append(name, username, location, profile, followers, following,bio);
 
 return card;
 
